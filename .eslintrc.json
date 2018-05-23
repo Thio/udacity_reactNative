@@ -1,0 +1,275 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true
+  },
+  "extends": [
+    "plugin:react/recommended"
+  ],
+  "globals": {
+    "process": false
+  },
+  "overrides": [
+    {
+      "env": {
+        "mocha": true
+      },
+      "files": [
+        "**/test/*.js",
+        "**/testutil/*.js"
+      ],
+      "globals": {
+        "__rewire_reset_all__": false,
+        "expect": false,
+        "sinon": false
+      }
+    },
+    {
+      "files": [
+        "scripts/**/*.js"
+      ],
+      "rules": {
+        "no-console": "off"
+      }
+    }
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "jsx": true
+    },
+    "ecmaVersion": 8,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "mocha",
+    "react"
+  ],
+  "rules": {
+    "array-bracket-spacing": [
+      "error",
+      "never",
+      {}
+    ],
+    "arrow-parens": [
+      "error",
+      "as-needed"
+    ],
+    "arrow-spacing": [
+      "error"
+    ],
+    "brace-style": [
+      "error",
+      "1tbs",
+      {}
+    ],
+    "comma-dangle": [
+      "error",
+      "never"
+    ],
+    "computed-property-spacing": [
+      "error",
+      "never"
+    ],
+    "consistent-return": [
+      "error"
+    ],
+    "curly": [
+      "error",
+      "all"
+    ],
+    "eol-last": [
+      "error"
+    ],
+    "eqeqeq": [
+      "error"
+    ],
+    "indent": [
+      "error",
+      2,
+      {
+        "ArrayExpression": "off",
+        "ignoredNodes": [
+          "JSXAttribute",
+          "JSXElement"
+        ],
+        "CallExpression": {
+          "arguments": 1
+        },
+        "MemberExpression": 2,
+        "SwitchCase": 1
+      }
+    ],
+    "key-spacing": [
+      "error"
+    ],
+    "max-len": [
+      "error",
+      120
+    ],
+    "mocha/no-exclusive-tests": "error",
+    "no-alert": [
+      "error"
+    ],
+    "no-compare-neg-zero": [
+      "error"
+    ],
+    "no-cond-assign": [
+      "error"
+    ],
+    "no-console": [
+      "error"
+    ],
+    "no-constant-condition": [
+      "error"
+    ],
+    "no-control-regex": [
+      "error"
+    ],
+    "no-debugger": [
+      "error"
+    ],
+    "no-delete-var": [
+      "error"
+    ],
+    "no-dupe-args": [
+      "error"
+    ],
+    "no-dupe-keys": [
+      "error"
+    ],
+    "no-duplicate-case": [
+      "error"
+    ],
+    "no-else-return": [
+      "error"
+    ],
+    "no-empty": [
+      "error"
+    ],
+    "no-empty-character-class": [
+      "error"
+    ],
+    "no-eq-null": [
+      "error"
+    ],
+    "no-extend-native": [
+      "error"
+    ],
+    "no-extra-semi": [
+      "error"
+    ],
+    "no-ex-assign": [
+      "error"
+    ],
+    "no-fallthrough": [
+      "error"
+    ],
+    "no-irregular-whitespace": [
+      "error"
+    ],
+    "no-lonely-if": [
+      "error"
+    ],
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1
+      }
+    ],
+    "no-multi-spaces": [
+      "error"
+    ],
+    "no-nested-ternary": [
+      "error"
+    ],
+    "no-octal": [
+      "error"
+    ],
+    "no-param-reassign": [
+      "error",
+      {
+        "props": false
+      }
+    ],
+    "no-script-url": [
+      "error"
+    ],
+    "no-self-compare": [
+      "error"
+    ],
+    "no-spaced-func": [
+      "error"
+    ],
+    "no-trailing-spaces": [
+      "error"
+    ],
+    "no-undef": [
+      "error"
+    ],
+    "no-unexpected-multiline": "error",
+    "no-unneeded-ternary": [
+      "error"
+    ],
+    "no-unused-vars": [
+      "error"
+    ],
+    "no-unreachable": [
+      "error"
+    ],
+    "no-warning-comments": [
+      "error",
+      {
+        "terms": [
+          "TODO",
+          " todo",
+          " fixme",
+          " FIXME"
+        ],
+        "location": "anywhere"
+      }
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "semi": [
+      "error",
+      "never"
+    ],
+    "sort-imports": [
+      "error",
+      {
+        "ignoreCase": true
+      }
+    ],
+    "space-before-blocks": [
+      "error"
+    ],
+    "space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "always",
+        "named": "never"
+      }
+    ],
+    "space-infix-ops": [
+      "error"
+    ],
+    "valid-jsdoc": [
+      "error"
+    ],
+    "valid-typeof": [
+      "error"
+    ],
+    "yoda": [
+      1,
+      "never",
+      {
+        "exceptRange": true,
+        "onlyEquality": false
+      }
+    ]
+  }
+}
