@@ -6,9 +6,17 @@ import PropTypes from 'prop-types'
 export default class AddEntry extends Component {
   render() {
     return (
-      <View>
+      <View  styles={[styles]}>
         <Text>AddEntry</Text>
       </View>
     )
   }
+
+  styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+  });
 }
