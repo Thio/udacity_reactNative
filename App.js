@@ -1,65 +1,122 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Platform, StatusBar } from "react-native";
 
-import React from 'react';
-import AddEntry from './components/AddEntry'
-import DeckListView from './components/DeckListView'
-import QuizView from './components/QuizView'
-import {TabNavigator} from 'react-navigation'
+import React from "react";
+import DeckListView from "./components/DeckListView";
+import DeckView from "./components/DeckView";
+import QuizView from "./components/QuizView";
+import NewDeck from "./components/NewDeck";
+import NewQuestion from "./components/NewQuestion";
+import {
+  createTabNavigator,
+  createStackNavigator,
+  createBottomTabNavigator
+} from "react-navigation";
 
-import {FontAwesome} from '@expo/vector-icons'
+import { setLocalNotification } from "./util/notification";
 
-function Home(){
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import reducer from "./reducers";
+
+import { FontAwesome } from "@expo/vector-icons";
+import { Constants } from "expo";
+
+function UdaciStatusBar({ backgroundColor, ...props }) {
   return (
-    <View style={styles}>
-      <Text>Home</Text>
+    <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
+      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
     </View>
-  )
-
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-  })
+  );
 }
 
-const Tabs = TabNavigator({
-  Home: {
-    screen: Home,
-    navigationOptions: {
-      tabBarIcon: () => <FontAwesome name='home' size={3} color='white'/>
+const Tabs = createTabNavigator(
+  {
+    DeckListView: {
+      screen: DeckListView,
+      navigationOptions: {
+        tabBarLabel: "Deck view",
+        tabBarIcon: ({ tintColor }) => (
+          <FontAwesome name="inbox" size={30} color={tintColor} />
+        )
+      }
+    },
+    NewDeck: {
+      screen: NewDeck,
+      navigationOptions: {
+        tabBarLabel: "New Deck",
+        tabBarIcon: ({ tintColor }) => (
+          <FontAwesome name="home" size={30} color={tintColor} />
+        )
+      }
     }
   },
-  NewQuiz: {
-    screen: QuizView,
+  {
     navigationOptions: {
-      tabBarIcon: () => <FontAwesome name='question' size={3} color='white'/>
-    }
-  },
-  DeckListView: {
-    screen: DeckListView,
-    navigationOptions: {
-      tabBarIcon: () => <FontAwesome name='cards' size={3} color='white'/>
+      header: null
+    },
+    tabBarOptions: {
+      activeTintColor: Platform.OS === "ios" ? "purple" : "white",
+      inactiveTintColor: Platform.OS === "ios" ? "black" : "black",
+      style: {
+        height: 56,
+        backgroundColor: Platform.OS === "ios" ? "white" : "darkgrey",
+        shadowColor: "rgba(0, 0, 0, 0.24)",
+        shadowOffset: {
+          width: 0,
+          height: 3
+        },
+        shadowRadius: 6,
+        shadowOpacity: 1
+      }
     }
   }
-})
+);
+
+const MainNavigator = createStackNavigator(
+  {
+    Home: {
+      screen: Tabs
+    },
+    DeckView: {
+      screen: DeckView
+    },
+    NewQuestion: {
+      screen: NewQuestion
+    },
+    QuizView: {
+      screen: QuizView
+    }
+  },
+  {
+    navigationOptions: {
+      header: null
+    }
+  }
+);
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
+
   render() {
+    console.disableYellowBox = true;
     return (
-      <View style={styles.container}>
-        <Tabs style={flex:1} />
-      </View>
+      <Provider store={createStore(reducer)}>
+        <View style={styles.container}>
+          <UdaciStatusBar
+            backgroundColor={"darkgrey"}
+            barStyle="light-content"
+          />
+          <MainNavigator />
+        </View>
+      </Provider>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    flex: 1
+  }
 });
