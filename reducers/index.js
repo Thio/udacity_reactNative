@@ -8,29 +8,38 @@ const emptyDeck = {
 const defaultState = {
   decks: [
     {
-      deckName: "Test",
+      deckName: "Mentorquestion",
       cards: [
         {
-          q: "whats your name?",
-          a: "matthias"
+          q: "Was i a good mentor?",
+          a: "yes"
         },
         {
-          q: "how old are you",
-          a: "28"
+          q: "Is my student sorry for missing the deadline",
+          a: "yes"
+        },
+        {
+          q: "Is the student going to pass",
+          a: "i dont know yet"
         }
       ]
     },
     {
-      deckName: "idoten",
+      deckName: "stupid facts",
       cards: [
         {
-          q: "whats your cats name?",
-          a: "isis"
+          q: "what was walt disney afraid of?",
+          a: "mice"
         },
         {
-          q: "where do you live",
-          a: "regensburg"
+          q: "what animal can breath through the butt",
+          a: "turtle"
+        },
+        {
+          q: "what planet rotates clockwise",
+          a: "venus"
         }
+
       ]
     }
   ]
